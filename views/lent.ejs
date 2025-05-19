@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lent Books</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container py-5">
+    <h1 class="mb-4">Lent Books</h1>
+    <a href="/" class="btn btn-secondary mb-3">Back to All Books</a>
+    <div class="row">
+      <% books.forEach(book => { %>
+        <div class="col-md-4 mb-3">
+          <div class="card p-3">
+            <h5><%= book.title %></h5>
+            <p>By <%= book.author %></p>
+            <p><strong>Given To:</strong> <%= book.givenTo %></p>
+            <form action="/books/<%= book._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Delete this book?')">
+              <button class="btn btn-danger btn-sm w-100">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>
