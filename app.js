@@ -1,9 +1,11 @@
 const express = require('express');
 let app = express();
-const port = 3000;
 const path = require("path");
+const port = process.env.PORT || 3000;
 const Book = require('./models/Book');
 const connectDB = require('./config/db');
+require('dotenv').config();
+
 connectDB();
 
 app.set("view engine", "ejs");
@@ -71,6 +73,8 @@ app.get('/books/:id/given', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+
 app.get('/books/:id/given', async (req, res) => {
   const { id } = req.params;
 
@@ -106,5 +110,5 @@ app.post('/books/:id/given', async (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Listening on port ${port}`);
 });
